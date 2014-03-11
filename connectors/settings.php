@@ -44,6 +44,7 @@ class WP_Stream_Connector_Settings extends WP_Stream_Connector {
 
 		add_action( 'admin_head', array( __CLASS__, 'highlight_field' ) );
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'enqueue_jquery_color' ) );
+		add_action( 'customize_save', array( __CLASS__, 'log_customizations' ) );
 	}
 
 	/**
@@ -356,6 +357,31 @@ class WP_Stream_Connector_Settings extends WP_Stream_Connector {
 				array( $current_key => 'updated' )
 			);
 		}
+	}
+
+	/**
+	 * @action customizer_save
+	 */
+	public static function log_customizations( $customizer ) {
+		$changed_settings = array_filter(
+			$customizer->settings(),
+			function( $setting ) {
+				return maybe_serialize( $setting->value() ) !== maybe_serialize( $setting->post_value() );
+			}
+		);
+		
+		$changed_settings = array_map(
+			function( $setting ) {
+				return array(
+					'old' => $setting->post_value(),
+					'new' => $setting->value()
+				);
+			},
+			$changed_settings
+		);
+
+		// debugging
+		print_r( $changed_settings );
 	}
 
 	/**
