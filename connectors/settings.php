@@ -369,19 +369,27 @@ class WP_Stream_Connector_Settings extends WP_Stream_Connector {
 				return maybe_serialize( $setting->value() ) !== maybe_serialize( $setting->post_value() );
 			}
 		);
-		
+
 		$changed_settings = array_map(
 			function( $setting ) {
 				return array(
-					'old' => $setting->post_value(),
-					'new' => $setting->value()
+					'label'     => self::get_field_label( $setting->id ),
+					'option'    => $setting->id,
+					'old_value' => $setting->post_value(),
+					'value'     => $setting->value(),
 				);
 			},
 			$changed_settings
 		);
 
-		// debugging
-		print_r( $changed_settings );
+		foreach( $changed_settings as $changed_setting ) {
+			self::log(
+				__( '"%s" setting was updated', 'stream' ),
+				$changed_setting,
+				null,
+				array( 'customizer' => 'updated' )
+			);
+		}
 	}
 
 	/**
