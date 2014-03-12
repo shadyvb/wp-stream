@@ -410,14 +410,23 @@ class WP_Stream_List_Table extends WP_List_Table {
 		}
 
 		$existing_records = existing_records( $column, $table );
+		$active_records   = array();
+		$disabled_records = array();
+
 		foreach ( $all_records as $record => $label ) {
 			if ( array_key_exists( $record , $existing_records ) ) {
-				$all_records[ $record ] = array( 'label' => $label, 'disabled' => '' );
+				$active_records[ $record ] = array( 'label' => $label, 'disabled' => '' );
 			} else {
-				$all_records[ $record ] = array( 'label' => $label, 'disabled' => 'disabled="disabled"' );
+				$disabled_records[ $record ] = array( 'label' => $label, 'disabled' => 'disabled="disabled"' );
 			}
 		}
-		asort( $all_records );
+
+		asort( $active_records );
+		asort( $disabled_records );
+
+		// Not using array_merge() in order to preserve the array index for the Authors dropdown which uses the user_id as the key
+		$all_records = $active_records + $disabled_records;
+
 		return $all_records;
 	}
 
