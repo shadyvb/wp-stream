@@ -117,16 +117,6 @@ class WP_Stream_Admin {
 			array( __CLASS__, 'render_extensions_page' )
 		);
 
-		$extensions = WP_Stream_Extensions::get_instance();
-		self::$screen_id['extensions'] = add_submenu_page(
-			self::RECORDS_PAGE_SLUG,
-			__( 'Stream Extensions', 'stream' ),
-			__( 'Extensions', 'stream' ),
-			self::SETTINGS_CAP,
-			'wp_stream_extensions',
-			array( $extensions, 'render_page' )
-		);
-
 		// Register the list table early, so it associates the column headers with 'Screen settings'
 		add_action( 'load-' . self::$screen_id['main'], array( __CLASS__, 'register_list_table' ) );
 	}
@@ -145,9 +135,7 @@ class WP_Stream_Admin {
 		wp_register_style( 'select2', WP_STREAM_URL . 'ui/select2/select2.css', array(), '3.4.5' );
 
 		wp_register_script( 'timeago', WP_STREAM_URL . 'ui/timeago/timeago.js', array(), '0.2.0', true );
-		if ( ! ( $locale = substr( get_locale(), 2 ) ) ) {
-			$locale = 'en';
-		}
+		$locale    = substr( get_locale(), 0, 2 );
 		$file_tmpl = 'ui/timeago/locale/jquery.timeago.%s.js';
 		if ( file_exists( WP_STREAM_DIR . sprintf( $file_tmpl, $locale ) ) ) {
 			wp_register_script( 'timeago-locale', WP_STREAM_URL . sprintf( $file_tmpl, $locale ), array( 'timeago' ), '1' );
@@ -159,8 +147,7 @@ class WP_Stream_Admin {
 
 		if ( 'index.php' === $hook ) {
 			wp_enqueue_script( 'wp-stream-admin-dashboard', WP_STREAM_URL . 'ui/dashboard.js', array( 'jquery', 'heartbeat' ) );
-		} else if ( in_array( $hook, self::$screen_id ) ) {
-
+		} elseif ( in_array( $hook, self::$screen_id ) || 'plugins.php' === $hook ) {
 			wp_enqueue_script( 'select2' );
 			wp_enqueue_style( 'select2' );
 
@@ -426,7 +413,8 @@ class WP_Stream_Admin {
 		?>
 		<div class="themes-php">
 			<div class="wrap">
-				<?php require_once WP_STREAM_INC_DIR . 'extensions.php' ?>
+				<?php $extensions = WP_Stream_Extensions::get_instance() ?>
+				<?php $extensions->render_page() ?>
 			</div>
 		</div>
 		<?php
