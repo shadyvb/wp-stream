@@ -390,4 +390,10 @@
 
 .stream_page_wp_stream_extensions .theme:hover .theme-name span.inactive {
 	display: none;
+
+/* User Profile */
+.wp-stream-feeds-key .spinner {
+	margin-top: 5px;
+	position: absolute;
+	float: none;
 }

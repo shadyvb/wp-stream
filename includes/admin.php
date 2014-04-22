@@ -179,9 +179,11 @@ class WP_Stream_Admin {
 
 		wp_enqueue_style( 'wp-stream-admin', WP_STREAM_URL . 'ui/admin.css', array() );
 
+		$script_screens = array( 'plugins.php', 'user-edit.php', 'user-new.php', 'profile.php' );
+
 		if ( 'index.php' === $hook ) {
 			wp_enqueue_script( 'wp-stream-admin-dashboard', WP_STREAM_URL . 'ui/dashboard.js', array( 'jquery', 'heartbeat' ) );
-		} elseif ( in_array( $hook, self::$screen_id ) || 'plugins.php' === $hook ) {
+		} elseif ( in_array( $hook, self::$screen_id ) || in_array( $hook, $script_screens ) ) {
 			wp_enqueue_script( 'select2' );
 			wp_enqueue_style( 'select2' );
 
@@ -439,9 +441,12 @@ class WP_Stream_Admin {
 
 		$extensions = WP_Stream_Extensions::get_instance();
 
-//		if ( $install = wp_stream_filter_input( INPUT_GET, 'install' ) ) {
-//			return self::render_extension_download_page( $install );
-//		}
+		/*
+		if ( $install = wp_stream_filter_input( INPUT_GET, 'install' ) ) {
+			return self::render_extension_download_page( $install );
+		}
+		*/
+
 
 		wp_enqueue_style( 'thickbox' );
 		wp_enqueue_script(
