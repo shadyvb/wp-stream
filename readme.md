@@ -7,7 +7,7 @@ Stream tracks logged-in user activity so you can monitor every change made on yo
 **Contributors:** [stream](http://profiles.wordpress.org/stream), [x-team](http://profiles.wordpress.org/x-team), [fjarrett](http://profiles.wordpress.org/fjarrett), [westonruter](http://profiles.wordpress.org/westonruter), [japh](http://profiles.wordpress.org/japh), [lukecarbis](http://profiles.wordpress.org/lukecarbis), [shadyvb](http://profiles.wordpress.org/shadyvb), [jonathanbardo](http://profiles.wordpress.org/jonathanbardo), [c3mdigital](http://profiles.wordpress.org/c3mdigital), [johnregan3](http://profiles.wordpress.org/johnregan3), [akeda](http://profiles.wordpress.org/akeda), [kucrut](http://profiles.wordpress.org/kucrut), [topher1kenobe](http://profiles.wordpress.org/topher1kenobe)  
 **Tags:** [actions](http://wordpress.org/plugins/tags/actions), [activity](http://wordpress.org/plugins/tags/activity), [admin](http://wordpress.org/plugins/tags/admin), [analytics](http://wordpress.org/plugins/tags/analytics), [dashboard](http://wordpress.org/plugins/tags/dashboard), [log](http://wordpress.org/plugins/tags/log), [notification](http://wordpress.org/plugins/tags/notification), [stream](http://wordpress.org/plugins/tags/stream), [users](http://wordpress.org/plugins/tags/users)  
 **Requires at least:** 3.7  
-**Tested up to:** 3.9  
+**Tested up to:** 3.9.1  
 **Stable tag:** trunk (master)  
 **License:** [GPLv2 or later](http://www.gnu.org/licenses/gpl-2.0.html)  
 
@@ -33,6 +33,7 @@ Visit the Stream Extensions screen inside the plugin to learn more about making 
  * [Reports](https://wp-stream.com/extension/reports/)
  * [Data Exporter](https://wp-stream.com/extension/data-exporter/)
  * [Cherry-Pick](https://wp-stream.com/extensions/cherry-pick/)
+ * [WooCommerce Connector](https://wp-stream.com/extension/connector-woocommerce/)
 
 **Recorded activity:**
 
@@ -115,6 +116,31 @@ Thank you for wanting to make Stream better for everyone! We salute you.
 ![Enable private feed access for your activity Stream, determine how long records should live before being purged, or purge them from the database manually at any time.](assets/screenshot-4.png)
 
 ## Changelog ##
+
+### 1.4.7 - June 27, 2014 ###
+* New: Comment Type support added to the Comments connector ([#558](https://github.com/x-team/wp-stream/issues/558))
+* Fix: Datepicker opens again with each paged view ([#568](https://github.com/x-team/wp-stream/issues/568))
+* Fix: PHP warning when deleting network users ([#579](https://github.com/x-team/wp-stream/issues/579))
+* Fix: Track user count setting changes ([#583](https://github.com/x-team/wp-stream/issues/583))
+* Fix: .po and .pot files out-of-date for translators ([#584](https://github.com/x-team/wp-stream/issues/584))
+
+Props [lukecarbis](http://profiles.wordpress.org/lukecarbis/), [fjarrett](http://profiles.wordpress.org/fjarrett/), [bordoni](http://profiles.wordpress.org/bordoni/), [shadyvb](http://profiles.wordpress.org/shadyvb/)
+
+### 1.4.6 - May 30, 2014 ###
+* Tweak: Actions provided for trashed posts are irrelevant ([#523](https://github.com/x-team/wp-stream/issues/523))
+* Tweak: Use core language pack translations where possible ([#534](https://github.com/x-team/wp-stream/issues/534))
+* Tweak: Consolidate show filter and show column screen options ([#542](https://github.com/x-team/wp-stream/issues/542))
+* Tweak: Stop tracking failed login attempts ([#547](https://github.com/x-team/wp-stream/issues/547))
+* Tweak: Remove all uses of extract() from Stream ([#556](https://github.com/x-team/wp-stream/issues/556))
+* Fix: Excluding roles is not handled properly ([#527](https://github.com/x-team/wp-stream/issues/527))
+* Fix: Stream runs install routine twice ([#528](https://github.com/x-team/wp-stream/issues/528))
+* Fix: Widget records show sidebar slug instead of label ([#531](https://github.com/x-team/wp-stream/issues/531))
+* Fix: Fatal error when PHP version is less than 5.3 ([#538](https://github.com/x-team/wp-stream/issues/538))
+* Fix: Cannot exclude Custom Background context ([#543](https://github.com/x-team/wp-stream/issues/543))
+* Fix: Conflict with Jetpack body class in WP Admin ([#545](https://github.com/x-team/wp-stream/issues/545))
+* Fix: Stream settings exclude error for big wp_users table ([#551](https://github.com/x-team/wp-stream/issues/551))
+
+Props [fjarrett](http://profiles.wordpress.org/fjarrett/), [lukecarbis](http://profiles.wordpress.org/lukecarbis/), [shadyvb](http://profiles.wordpress.org/shadyvb/), [barryceelen](http://profiles.wordpress.org/barryceelen/), [japh](http://profiles.wordpress.org/japh/)
 
 ### 1.4.5 - May 15, 2014 ###
 * New: Lightweight frontend indicator for sites using Stream ([#507](https://github.com/x-team/wp-stream/issues/507))
